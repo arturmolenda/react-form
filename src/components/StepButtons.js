@@ -13,13 +13,18 @@ const Container = Styled.div`
 }
 `;
 
-const StepButtons = ({ step, userData }) => {
+const StepButtons = ({ step, userData, validate }) => {
   const dispatch = useDispatch();
 
-  const goBackHandle = () => dispatch(setStep(step - 1));
-  const nextHandle = () => {
-    dispatch(setStep(step + 1));
+  const goBackHandle = () => {
+    dispatch(setStep(step - 1));
     dispatch(updateUserData(userData));
+  };
+  const nextHandle = () => {
+    if (validate()) {
+      dispatch(setStep(step + 1));
+      dispatch(updateUserData(userData));
+    }
   };
 
   return (
