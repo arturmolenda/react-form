@@ -1,4 +1,8 @@
-import { STEP_UPDATE, THEME_UPDATE } from '../constants/Constants';
+import {
+  STEP_UPDATE,
+  THEME_UPDATE,
+  USER_DATA_UPDATE,
+} from '../constants/Constants';
 
 export const updateTheme = () => (dispatch, getState) => {
   const {
@@ -12,3 +16,6 @@ export const updateTheme = () => (dispatch, getState) => {
 
 export const setStep = (step) => (dispatch) =>
   dispatch({ type: STEP_UPDATE, payload: step });
+
+export const updateUserData = (userData) => (dispatch) =>
+  dispatch({ type: USER_DATA_UPDATE, payload: userData });
