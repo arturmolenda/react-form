@@ -10,12 +10,14 @@ import {
   themeReducer,
   stepsReducer,
   userDataReducer,
+  shipsReducer,
 } from './reducers/Reducers';
 
 const reducer = combineReducers({
   theme: themeReducer,
   steps: stepsReducer,
   userData: userDataReducer,
+  ships: shipsReducer,
 });
 
 // if theme exists in localStorage returns true and shows site in dark theme
