@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateTheme } from './redux/actions/Actions';
+import { getShips, updateTheme } from './redux/actions/Actions';
 
 import {
   createMuiTheme,
@@ -20,6 +20,8 @@ const App = () => {
       type: darkTheme ? 'dark' : 'light',
     },
   });
+
+  useEffect(() => dispatch(getShips()), [dispatch]);
 
   return (
     <MuiThemeProvider theme={theme}>
