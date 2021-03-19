@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 
 import ThemeButton from './components/ThemeButton';
+import Container from './components/Container';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <div className='App'>
+        <Container />
         <ThemeButton
           darkTheme={darkTheme}
           changeThemeHandle={() => dispatch(updateTheme())}
