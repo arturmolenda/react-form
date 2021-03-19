@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { setStep, updateUserData } from '../redux/actions/Actions';
+import { USER_DATA_RESET } from '../redux/constants/Constants';
 
 import { Button } from '@material-ui/core';
 import Styled from 'styled-components';
@@ -18,7 +19,7 @@ const StyledButton = Styled(Button)`
 }
 `;
 
-const StepButtons = ({ step, userData, validate }) => {
+const StepButtons = ({ step, userData, validate, openModal }) => {
   const dispatch = useDispatch();
 
   const goBackHandle = () => {
@@ -31,7 +32,16 @@ const StepButtons = ({ step, userData, validate }) => {
       dispatch(updateUserData(userData));
     }
   };
-
+  const resetHandle = () => {
+    dispatch(setStep(0));
+    dispatch({ type: USER_DATA_RESET });
+  };
+  const sendHandle = () => {
+    if (validate()) {
+      dispatch(updateUserData(userData));
+      openModal();
+    }
+  };
   return (
     <Container>
       {step !== 0 && (
@@ -46,10 +56,18 @@ const StepButtons = ({ step, userData, validate }) => {
       )}
       {step === 2 && (
         <>
-          <StyledButton color='primary' variant='outlined'>
+          <StyledButton
+            onClick={resetHandle}
+            color='primary'
+            variant='outlined'
+          >
             Reset
           </StyledButton>
-          <StyledButton color='primary' variant='contained'>
+          <StyledButton
+            onClick={sendHandle}
+            color='primary'
+            variant='contained'
+          >
             Wyślij
           </StyledButton>
         </>
