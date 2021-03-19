@@ -5,6 +5,7 @@ import {
   SHIPS_REQUEST,
   SHIPS_SUCCESS,
   SHIPS_FAIL,
+  USER_DATA_RESET,
 } from '../constants/Constants';
 
 export const themeReducer = (state = {}, action) => {
@@ -39,6 +40,15 @@ export const userDataReducer = (
   switch (action.type) {
     case USER_DATA_UPDATE:
       return { ...state, ...action.payload };
+    case USER_DATA_RESET:
+      return {
+        name: '',
+        surname: '',
+        sex: '',
+        birthDate: new Date(),
+        age: 0,
+        ship: '',
+      };
     default:
       return state;
   }
