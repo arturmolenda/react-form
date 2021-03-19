@@ -6,10 +6,11 @@ import {
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { themeReducer } from './reducers/Reducers';
+import { themeReducer, stepsReducer } from './reducers/Reducers';
 
 const reducer = combineReducers({
   theme: themeReducer,
+  steps: stepsReducer,
 });
 
 // if theme exists in localStorage returns true and shows site in dark theme

@@ -1,4 +1,4 @@
-import { THEME_UPDATE } from '../constants/Constants';
+import { STEP_UPDATE, THEME_UPDATE } from '../constants/Constants';
 
 export const updateTheme = () => (dispatch, getState) => {
   const {
@@ -9,3 +9,6 @@ export const updateTheme = () => (dispatch, getState) => {
     ? localStorage.removeItem('darkTheme')
     : localStorage.setItem('darkTheme', true);
 };
+
+export const setStep = (step) => (dispatch) =>
+  dispatch({ type: STEP_UPDATE, payload: step });
