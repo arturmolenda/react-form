@@ -12,6 +12,11 @@ const Container = Styled.div`
     margin-top: 16px
 }
 `;
+const StyledButton = Styled(Button)`
+&& {
+    margin-right: 8px;
+}
+`;
 
 const StepButtons = ({ step, userData, validate }) => {
   const dispatch = useDispatch();
@@ -30,14 +35,24 @@ const StepButtons = ({ step, userData, validate }) => {
   return (
     <Container>
       {step !== 0 && (
-        <Button onClick={goBackHandle} color='secondary'>
+        <StyledButton onClick={goBackHandle} color='secondary'>
           Wstecz
-        </Button>
+        </StyledButton>
       )}
       {step !== 2 && (
-        <Button onClick={nextHandle} color='primary' variant='contained'>
+        <StyledButton onClick={nextHandle} color='primary' variant='contained'>
           Dalej
-        </Button>
+        </StyledButton>
+      )}
+      {step === 2 && (
+        <>
+          <StyledButton color='primary' variant='outlined'>
+            Reset
+          </StyledButton>
+          <StyledButton color='primary' variant='contained'>
+            Wyślij
+          </StyledButton>
+        </>
       )}
     </Container>
   );

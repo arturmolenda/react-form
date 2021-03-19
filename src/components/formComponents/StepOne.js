@@ -7,6 +7,7 @@ import {
   FormHelperText,
   Grid,
   InputLabel,
+  MenuItem,
   Select,
   TextField,
 } from '@material-ui/core';
@@ -63,16 +64,21 @@ const StepOne = () => {
       >
         <InputLabel>Płeć</InputLabel>
         <Select
-          native
+          MenuProps={{
+            getContentAnchorEl: null,
+            anchorOrigin: {
+              vertical: 'bottom',
+              horizontal: 'left',
+            },
+          }}
           label='Płeć'
           fullWidth
           value={sex}
           onChange={(e) => setSex(e.target.value)}
         >
-          <option value=''></option>
-          <option value='Mężczyzna'>Mężczyzna</option>
-          <option value='Kobieta'>Kobieta</option>
-          <option value='Inne'>Inne</option>
+          <MenuItem value='Mężczyzna'>Mężczyzna</MenuItem>
+          <MenuItem value='Kobieta'>Kobieta</MenuItem>
+          <MenuItem value='Inne'>Inne</MenuItem>
         </Select>
         {submitted && !Boolean(sex) && (
           <FormHelperText>Płeć nie może być pusta!</FormHelperText>

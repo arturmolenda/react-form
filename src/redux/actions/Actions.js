@@ -1,8 +1,12 @@
 import {
+  SHIPS_FAIL,
+  SHIPS_REQUEST,
+  SHIPS_SUCCESS,
   STEP_UPDATE,
   THEME_UPDATE,
   USER_DATA_UPDATE,
 } from '../constants/Constants';
+import axios from 'axios';
 
 export const updateTheme = () => (dispatch, getState) => {
   const {
@@ -19,3 +23,16 @@ export const setStep = (step) => (dispatch) =>
 
 export const updateUserData = (userData) => (dispatch) =>
   dispatch({ type: USER_DATA_UPDATE, payload: userData });
+
+export const getShips = () => async (dispatch) => {
+  try {
+    dispatch({ type: SHIPS_REQUEST });
+    const { data } = await axios.get('https://swapi.dev/api/starships/');
+    dispatch({ type: SHIPS_SUCCESS, payload: data.results });
+  } catch (error) {
+    dispatch({
+      type: SHIPS_FAIL,
+      payload: 'Coś poszło nie tak, spróbuj ponownie później.',
+    });
+  }
+};

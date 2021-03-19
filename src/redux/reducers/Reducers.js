@@ -2,6 +2,9 @@ import {
   STEP_UPDATE,
   THEME_UPDATE,
   USER_DATA_UPDATE,
+  SHIPS_REQUEST,
+  SHIPS_SUCCESS,
+  SHIPS_FAIL,
 } from '../constants/Constants';
 
 export const themeReducer = (state = {}, action) => {
@@ -36,6 +39,19 @@ export const userDataReducer = (
   switch (action.type) {
     case USER_DATA_UPDATE:
       return { ...state, ...action.payload };
+    default:
+      return state;
+  }
+};
+
+export const shipsReducer = (state = { ships: [] }, action) => {
+  switch (action.type) {
+    case SHIPS_REQUEST:
+      return { loading: true };
+    case SHIPS_SUCCESS:
+      return { ships: action.payload };
+    case SHIPS_FAIL:
+      return { error: action.payload };
     default:
       return state;
   }
