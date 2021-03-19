@@ -23,7 +23,14 @@ export const stepsReducer = (state = { activeStep: 0 }, action) => {
 };
 
 export const userDataReducer = (
-  state = { name: '', surname: '', sex: '', birthDate: '', age: 0, ship: '' },
+  state = {
+    name: '',
+    surname: '',
+    sex: '',
+    birthDate: new Date(),
+    age: 0,
+    ship: '',
+  },
   action
 ) => {
   switch (action.type) {
